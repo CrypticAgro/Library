@@ -1,0 +1,21 @@
+body{
+    margin: 0;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+    background-color: gray;
+    font-size: 50px;
+    color: white;
+}
+.content{
+    display: flex;
+}
+.add-and-remove-books{
+    background-color: red;
+    width: 20vw;
+    height: 90vh;
+}
