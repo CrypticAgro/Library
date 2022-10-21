@@ -21,6 +21,7 @@ function Book(nameOfBook, nameOfAuthor, pageNumber, count, read) {
     this.read = read;
 }
 function addBookToLibrary(e) {
+    console.log("I Broke")
     e.preventDefault();
     let bookName = bookTitle.value;
     let authorName = author.value;
