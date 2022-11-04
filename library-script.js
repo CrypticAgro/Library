@@ -1,5 +1,6 @@
 let Library = [];
 
+const emailError = document.querySelector("#mail + span.error");
 const submitButton = document.getElementById("submit-button");
 const bookTitle = document.getElementById("Book-Title");
 const author = document.getElementById("Author");
@@ -11,22 +12,37 @@ let libraryCounter = 0;
 let counter = 0;
 let count = 0;
 
-form.addEventListener("submit", addBookToLibrary);
 
-function Book(nameOfBook, nameOfAuthor, pageNumber, count, read) {
+class Book{
+    constructor(nameOfBook, nameOfAuthor, pageNumber, count, read) {
     this.nameOfBook = nameOfBook;
     this.nameOfAuthor = nameOfAuthor;
     this.pageNumber = pageNumber;
     this.count = count;
     this.read = read;
+    }
 }
-function addBookToLibrary(e) {
-    e.preventDefault();
+function addBookToLibrary() {
+    if(bookTitle.validity.valueMissing){
+        bookTitle.setCustomValidity("add a book title!");
+        bookTitle.reportValidity();
+    }
+    else if(author.validity.valueMissing){
+        author.setCustomValidity("add an author!");
+        author.reportValidity();
+    }
+    else if(pages.validity.valueMissing){
+        pages.setCustomValidity("add a page amount!");
+        pages.reportValidity();
+    }
+    else{
+    bookTitle.setCustomValidity("");
+    author.setCustomValidity("");
+    pages.setCustomValidity("");
     let bookName = bookTitle.value;
     let authorName = author.value;
     let page = pages.value;
     let hasRead = raed.checked;
-    console.log(hasRead)
     let book = new Book(bookName, authorName, page, counter, hasRead);
     Library.push(book);
     createBookDiv();
@@ -36,6 +52,7 @@ function addBookToLibrary(e) {
     author.value = "";
     pages.value = "";
     raed.checked = false;
+}
 }
 
 function createBookDiv() {
@@ -107,4 +124,4 @@ function removeDiv(e){
     e.target.parentNode.remove();
     libraryCounter--;
 }
-
+document.getElementById("submit-button").onclick = addBookToLibrary;
